@@ -21,7 +21,7 @@ const navLinks = [
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#1F2937]/90 backdrop-blur-md supports-backdrop-filter:bg-[#1F2937]/80">
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-3 sm:px-8 lg:px-16 xl:px-20">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-3 sm:px-8">
         {/* Logo */}
         <Link
           href="/"
