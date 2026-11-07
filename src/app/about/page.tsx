@@ -68,7 +68,7 @@ const primaryBtn =
 
 const AboutPage = () => {
   return (
-    <main className="bg-white text-[#1F2937]">
+    <main className="bg-base-100 text-base-content">
       {/* ───────── Hero ───────── */}
       <section className="bg-[#1F2937] text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 sm:px-8 md:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
@@ -106,9 +106,9 @@ const AboutPage = () => {
               aria-hidden
               className="absolute -inset-3 z-0 rotate-3 rounded-3xl bg-[#08796F]/40"
             />
-            <article className="relative rounded-3xl bg-white p-6 text-[#1F2937] shadow-2xl shadow-black/30">
+            <article className="relative rounded-3xl bg-base-100 p-6 text-base-content shadow-2xl shadow-black/30">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2 rounded-full bg-[#E8F1EF] px-3 py-1 text-sm font-medium text-[#08796F]">
+                <span className="flex items-center gap-2 rounded-full bg-base-200 px-3 py-1 text-sm font-medium text-primary">
                   <FaTree className="h-3.5 w-3.5" />
                   বৃক্ষরোপণ
                 </span>
@@ -154,7 +154,7 @@ const AboutPage = () => {
           আমাদের গল্প
         </h2>
 
-        <div className="space-y-6 text-lg leading-9 text-[#475467]">
+        <div className="space-y-6 text-lg leading-9 text-base-content/70">
           <p>
             অনেক মানুষ সমাজের জন্য কিছু করতে চান। কিন্তু কোথায় যাবেন, কার সাথে
             কাজ করবেন, কীভাবে শুরু করবেন, এই প্রশ্নেই অনেক ভালো উদ্যোগ থেমে
@@ -165,7 +165,7 @@ const AboutPage = () => {
             তিনি তাঁর সঙ্গী খুঁজে পান। আর যিনি সাহায্য করতে চান, তিনি খুঁজে পান
             নিজের এলাকার সঠিক কাজটি।
           </p>
-          <p className="font-semibold text-[#1F2937]">
+          <p className="font-semibold text-base-content">
             আমাদের লক্ষ্য একটাই: প্রতিটি ভালো উদ্যোগ যেন সঠিক মানুষের কাছে
             পৌঁছায়।
           </p>
@@ -173,12 +173,12 @@ const AboutPage = () => {
       </section>
 
       {/* ───────── How it works ───────── */}
-      <section className="bg-[#F3F6F5]">
+      <section className="bg-base-200">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
           <h2 className="max-w-2xl text-3xl font-bold leading-[1.4] sm:text-4xl">
             কীভাবে কাজ করে
           </h2>
-          <p className="mt-4 max-w-xl text-lg leading-8 text-[#475467]">
+          <p className="mt-4 max-w-xl text-lg leading-8 text-base-content/70">
             তিনটি সহজ ধাপে আপনি একজন দর্শক থেকে হয়ে উঠতে পারেন পরিবর্তনের অংশ।
           </p>
 
@@ -196,7 +196,9 @@ const AboutPage = () => {
                 <Link href={"/"}>
                   <h3 className="mt-6 text-xl font-bold">{step.title}</h3>
                 </Link>
-                <p className="mt-3 leading-8 text-[#475467]">{step.text}</p>
+                <p className="mt-3 leading-8 text-base-content/70">
+                  {step.text}
+                </p>
               </li>
             ))}
           </ol>
@@ -213,13 +215,15 @@ const AboutPage = () => {
           {values.map((v) => (
             <div
               key={v.title}
-              className="border-t border-gray-200 py-8 first:border-t-0 md:first:border-t md:nth-2:border-t"
+              className="border-t border-base-300 py-8 first:border-t-0 md:first:border-t md:nth-2:border-t"
             >
               <dt className="flex items-center gap-3 text-xl font-bold">
                 <span className="h-3 w-3 rounded-full bg-[#FBBF24]" />
                 {v.title}
               </dt>
-              <dd className="mt-3 pl-6 leading-8 text-[#475467]">{v.text}</dd>
+              <dd className="mt-3 pl-6 leading-8 text-base-content/70">
+                {v.text}
+              </dd>
             </div>
           ))}
         </dl>

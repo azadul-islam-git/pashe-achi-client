@@ -3,6 +3,7 @@ import { Anek_Bangla } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ThemeProvider from "./providers/ThemeProvider";
 
 const anekBangla = Anek_Bangla({
   variable: "--font-geist-sans",
@@ -18,13 +19,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="winter"
+      suppressHydrationWarning
       className={`${anekBangla.className}  h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="light"
+          enableSystem={false}
+        >
+          <Navbar />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

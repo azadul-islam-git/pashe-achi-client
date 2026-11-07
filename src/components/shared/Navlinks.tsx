@@ -36,13 +36,13 @@ const Navlinks = ({ href, name, icon, variant = "desktop" }: NavLinkProps) => {
     variant === "mobile"
       ? `rounded-xl px-4 py-3 ${
           isActive
-            ? "bg-white/10 font-semibold text-[#FBBF24]"
-            : "text-gray-300 hover:bg-white/5 hover:text-white"
+            ? "bg-primary/10 font-semibold text-primary"
+            : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
         }`
       : `relative rounded-md py-2 lg:text-[17px] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:rounded-full after:bg-[#FBBF24] after:transition-transform ${
           isActive
-            ? "font-semibold text-white after:scale-x-100"
-            : "text-gray-300 hover:text-white after:scale-x-0 hover:after:scale-x-100"
+            ? "font-semibold text-primary after:scale-x-100"
+            : "text-base-content/70 hover:text-base-content after:scale-x-0 hover:after:scale-x-100"
         }`;
 
   return (
@@ -51,9 +51,7 @@ const Navlinks = ({ href, name, icon, variant = "desktop" }: NavLinkProps) => {
       aria-current={isActive ? "page" : undefined}
       className={`${base} ${styles}`}
     >
-      <Icon
-        className={`h-5 w-5 shrink-0 ${isActive ? "text-[#FBBF24]" : ""}`}
-      />
+      <Icon className={`h-5 w-5 shrink-0 ${isActive ? "text-primary" : ""}`} />
       {name}
     </Link>
   );
