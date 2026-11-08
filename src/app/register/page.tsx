@@ -2,8 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaGoogle,
   FaGithub,
@@ -12,10 +11,31 @@ import {
   FaImage,
 } from "react-icons/fa";
 import { MdEmail, MdLockOutline } from "react-icons/md";
+import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 const RegisterPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const validatePassword = (password: string): string | null => {
+    if (password.length < 6) {
+      return "Password must be at least 6 characters long.";
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      return "Password must contain at least one uppercase letter.";
+    }
+
+    if (!/[a-z]/.test(password)) {
+      return "Password must contain at least one lowercase letter.";
+    }
+
+    return null;
+  };
+
   const handleEmailSignUp = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
+
     const formData = new FormData(e.target);
     const user = Object.fromEntries(formData.entries()) as {
       name: string;
@@ -23,19 +43,41 @@ const RegisterPage = () => {
       email: string;
       password: string;
     };
-    console.log(user);
+
+    const passwordError = validatePassword(user.password);
+    if (passwordError) {
+      toast.error(passwordError);
+      return;
+    }
+
+    setIsLoading(true);
+    const toastId = toast.loading("Creating your account...");
 
     const { data, error } = await authClient.signUp.email({
-      ...user,
+      name: user.name,
+      image: user.image,
+      email: user.email,
+      password: user.password,
     });
 
+    if (error) {
+      toast.error(error.message || "Failed to create your account.", {
+        id: toastId,
+      });
+
+      setIsLoading(false);
+      return;
+    }
+
     if (data) {
-      console.log(data);
+      toast.success("Account created successfully!", {
+        id: toastId,
+      });
+
       redirect("/");
     }
-    if (error) {
-      console.log(error);
-    }
+
+    setIsLoading(false);
   };
 
   return (
@@ -139,7 +181,7 @@ const RegisterPage = () => {
 
                 <input
                   id="photoURL"
-                  name="photoURL"
+                  name="image"
                   type="url"
                   placeholder="https://example.com/photo.jpg"
                   autoComplete="url"
@@ -167,24 +209,29 @@ const RegisterPage = () => {
                   type="password"
                   placeholder="Create a strong password"
                   autoComplete="new-password"
-                  minLength={6}
+                  title="Password must contain at least one uppercase letter, one lowercase letter, and 6 characters."
                   required
                   className="grow"
                 />
               </label>
 
               <p className="mt-2 text-xs text-base-content/50">
-                Use at least 6 characters.
+                Must contain at least 6 characters, one uppercase letter, and
+                one lowercase letter.
               </p>
             </div>
 
             {/* Register Button */}
             <button
               type="submit"
+              disabled={isLoading}
               className="btn btn-primary group mt-2 w-full rounded-xl text-base font-bold shadow-lg shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.98]"
             >
-              Create Account
-              <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+              {isLoading ? "Creating Account..." : "Create Account"}
+
+              {!isLoading && (
+                <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+              )}
             </button>
           </form>
 

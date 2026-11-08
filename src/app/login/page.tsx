@@ -2,14 +2,16 @@
 
 import React from "react";
 import Link from "next/link";
-
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaGoogle, FaGithub, FaArrowRight } from "react-icons/fa";
-
 import { MdEmail, MdLockOutline } from "react-icons/md";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 
 const LoginPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleEmailLogin = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -18,17 +20,29 @@ const LoginPage = () => {
       password: string;
     };
 
+    setIsLoading(true);
+    const toastId = toast.loading("Signing in...");
+
     const { data, error } = await authClient.signIn.email({
       ...user,
     });
 
+    if (error) {
+      toast.error(error.message || "Failed to sign in. Please try again.", {
+        id: toastId,
+      });
+
+      setIsLoading(false);
+      return;
+    }
+
     if (data) {
-      console.log(data);
+      toast.success("Login successful!", {
+        id: toastId,
+      });
       redirect("/");
     }
-    if (error) {
-      console.log(error);
-    }
+    setIsLoading(false);
   };
 
   return (
@@ -120,10 +134,14 @@ const LoginPage = () => {
             {/* Login Button */}
             <button
               type="submit"
+              disabled={isLoading}
               className="btn btn-primary group w-full rounded-xl text-base font-bold shadow-lg shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.98]"
             >
-              Login
-              <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+              {isLoading ? "Signing in..." : "Login"}
+
+              {!isLoading && (
+                <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+              )}
             </button>
           </form>
 

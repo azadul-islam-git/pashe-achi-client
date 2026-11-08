@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ThemeProvider from "./providers/ThemeProvider";
+import { Toaster } from "react-hot-toast";
 
 const anekBangla = Anek_Bangla({
   variable: "--font-geist-sans",
@@ -32,6 +33,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="flex-1">{children}</div>
           <Footer />
         </ThemeProvider>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          gutter={10}
+          toastOptions={{
+            duration: 4000,
+            style: {
+              minWidth: "320px",
+              padding: "18px 22px",
+              fontSize: "16px",
+              borderRadius: "16px",
+            },
+          }}
+        />
       </body>
     </html>
   );
