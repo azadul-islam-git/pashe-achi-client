@@ -14,7 +14,7 @@ const LoginPage = () => {
       <div className="relative w-full max-w-md">
         {/* Brand */}
         <div className="mb-8 text-center">
-          <Link href="/" className="inline-flex items-center gap-2">
+          <h1 className="inline-flex items-center gap-2">
             <span className="text-3xl font-extrabold tracking-tight text-base-content sm:text-4xl">
               পাশে আছি
             </span>
@@ -22,15 +22,15 @@ const LoginPage = () => {
             <span className="text-3xl font-extrabold text-primary sm:text-4xl">
               ফাউন্ডেশন
             </span>
-          </Link>
+          </h1>
 
           <p className="mt-3 text-sm text-base-content/60 sm:text-base">
-            Together, we can make a difference.
+            প্রতিটি ভালো কাজ শুরু হোক একজনের পাশে দাঁড়িয়ে।
           </p>
         </div>
 
         {/* Login Card */}
-        <div className="rounded-3xl border border-base-300 bg-base-100 p-6 shadow-xl shadow-black/5 sm:p-9">
+        <div className="auth-fade-in rounded-3xl border border-base-300 bg-base-100 p-6 shadow-xl shadow-black/5 sm:p-9">
           <div className="mb-7">
             <h1 className="text-2xl font-bold text-base-content sm:text-3xl">
               Welcome back!
@@ -52,7 +52,7 @@ const LoginPage = () => {
                 Email Address
               </label>
 
-              <label className="input input-bordered flex w-full items-center gap-3 rounded-xl bg-base-100">
+              <label className="input input-bordered flex w-full items-center gap-3 rounded-xl bg-base-100 transition-all duration-200 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
                 <MdEmail className="text-xl text-base-content/40" />
 
                 <input
@@ -76,7 +76,7 @@ const LoginPage = () => {
                 Password
               </label>
 
-              <label className="input input-bordered flex w-full items-center gap-3 rounded-xl bg-base-100">
+              <label className="input input-bordered flex w-full items-center gap-3 rounded-xl bg-base-100 transition-all duration-200 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
                 <MdLockOutline className="text-xl text-base-content/40" />
 
                 <input
@@ -94,7 +94,7 @@ const LoginPage = () => {
             {/* Login Button */}
             <button
               type="submit"
-              className="btn btn-primary group w-full rounded-xl text-base font-bold shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5"
+              className="btn btn-primary group w-full rounded-xl text-base font-bold shadow-lg shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.98]"
             >
               Login
               <FaArrowRight className="transition-transform group-hover:translate-x-1" />
@@ -116,7 +116,7 @@ const LoginPage = () => {
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
-              className="btn btn-outline rounded-xl border-base-300 bg-base-100 text-base-content hover:border-base-content/20 hover:bg-base-200"
+              className="btn btn-outline rounded-xl border-base-300 bg-base-100 text-base-content transition-all duration-200 hover:-translate-y-0.5 hover:border-base-content/20 hover:bg-base-200 active:scale-[0.98]"
             >
               <FaGoogle className="text-lg" />
               Google
@@ -124,7 +124,7 @@ const LoginPage = () => {
 
             <button
               type="button"
-              className="btn btn-outline rounded-xl border-base-300 bg-base-100 text-base-content hover:border-base-content/20 hover:bg-base-200"
+              className="btn btn-outline rounded-xl border-base-300 bg-base-100 text-base-content transition-all duration-200 hover:-translate-y-0.5 hover:border-base-content/20 hover:bg-base-200 active:scale-[0.98]"
             >
               <FaGithub className="text-lg" />
               GitHub

@@ -12,7 +12,7 @@ const anekBangla = Anek_Bangla({
 
 export const metadata: Metadata = {
   title: "পাশে আছি",
-  description: "পাশে আছি - মানুষের প্রয়োজনে, আমরা পাশে আছি।",
+  description: "প্রতিটি ভালো কাজ শুরু হোক একজনের পাশে দাঁড়িয়ে।",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
