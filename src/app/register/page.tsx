@@ -1,5 +1,9 @@
-import Link from "next/link";
+"use client";
 
+import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import React from "react";
 import {
   FaGoogle,
   FaGithub,
@@ -7,10 +11,33 @@ import {
   FaUser,
   FaImage,
 } from "react-icons/fa";
-
 import { MdEmail, MdLockOutline } from "react-icons/md";
 
 const RegisterPage = () => {
+  const handleEmailSignUp = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      name: string;
+      image: string;
+      email: string;
+      password: string;
+    };
+    console.log(user);
+
+    const { data, error } = await authClient.signUp.email({
+      ...user,
+    });
+
+    if (data) {
+      console.log(data);
+      redirect("/");
+    }
+    if (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <main className="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden bg-base-200 px-4 py-12 sm:px-6">
       {/* Background decoration */}
@@ -49,7 +76,7 @@ const RegisterPage = () => {
           </div>
 
           {/* Register Form */}
-          <form className="space-y-4">
+          <form onSubmit={handleEmailSignUp} className="space-y-4">
             {/* Name */}
             <div className="form-control">
               <label

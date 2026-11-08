@@ -1,10 +1,36 @@
+"use client";
+
+import React from "react";
 import Link from "next/link";
 
 import { FaGoogle, FaGithub, FaArrowRight } from "react-icons/fa";
 
 import { MdEmail, MdLockOutline } from "react-icons/md";
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 
 const LoginPage = () => {
+  const handleEmailLogin = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      email: string;
+      password: string;
+    };
+
+    const { data, error } = await authClient.signIn.email({
+      ...user,
+    });
+
+    if (data) {
+      console.log(data);
+      redirect("/");
+    }
+    if (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <main className="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden bg-base-200 px-4 py-12 sm:px-6">
       {/* Background decoration */}
@@ -42,7 +68,7 @@ const LoginPage = () => {
           </div>
 
           {/* Login Form */}
-          <form className="space-y-5">
+          <form onSubmit={handleEmailLogin} className="space-y-5">
             {/* Email */}
             <div className="form-control">
               <label
