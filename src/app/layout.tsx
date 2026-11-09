@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           reverseOrder={false}
           gutter={10}
           toastOptions={{
-            duration: 4000,
+            duration: 3000,
             style: {
               minWidth: "320px",
               padding: "18px 22px",

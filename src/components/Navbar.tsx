@@ -4,10 +4,10 @@ import Image from "next/image";
 import navLogo from "../../public/assets/logo.png";
 
 import { MdClose } from "react-icons/md";
-import { FaArrowRight } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import Navlinks from "./shared/Navlinks";
 import ThemeToggle from "./shared/ThemeToggle";
+import NavbarAuth from "./shared/NavbarAuth";
 
 const navLinks = [
   { name: "Home", href: "/", icon: "home" as const },
@@ -57,15 +57,7 @@ const Navbar = () => {
         {/* Tablet and Desktop Login Button */}
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
-          <Link
-            href="/login"
-            className="group hidden items-center gap-3 rounded-2xl bg-[#FBBF24] py-2 pl-6 pr-2 text-base font-semibold text-[#1F2937] shadow-md shadow-[#FBBF24]/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FCD34D] hover:shadow-lg hover:shadow-[#FBBF24]/40 active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 md:flex lg:text-[17px]"
-          >
-            Login
-            <span className="flex h-8 w-8 items-center justify-center rounded-2xl bg-neutral text-neutral-content transition-transform duration-200 group-hover:translate-x-0.5">
-              <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </span>
-          </Link>
+          <NavbarAuth />
         </div>
 
         {/* Mobile Menu */}
@@ -94,15 +86,7 @@ const Navbar = () => {
                 <ThemeToggle />
               </div>
 
-              <Link
-                href="/login"
-                className="group/login flex items-center justify-center gap-3 rounded-2xl bg-[#FBBF24] py-2.5 pl-6 pr-2.5 font-semibold text-[#1F2937] transition-all duration-200 hover:bg-[#FCD34D] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                Login
-                <span className="flex h-8 w-8 items-center justify-center rounded-2xl bg-[#1F2937] text-[#FBBF24]">
-                  <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/login:translate-x-0.5" />
-                </span>
-              </Link>
+              <NavbarAuth variant="mobile" />
             </div>
           </div>
         </details>
