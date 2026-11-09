@@ -45,6 +45,31 @@ const LoginPage = () => {
     setIsLoading(false);
   };
 
+  const handleGoogleSingIn = async () => {
+    const toastId = toast.loading("Signing in with Google...");
+    const { error } = await authClient.signIn.social({
+      provider: "google",
+    });
+    if (error) {
+      toast.error(error.message || "Google sign-in failed. Please try again.", {
+        id: toastId,
+      });
+    }
+  };
+
+  const handleGithubSignIn = async () => {
+    const toastId = toast.loading("Signing in with GitHub...");
+    const { error } = await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "/",
+    });
+    if (error) {
+      toast.error(error.message || "GitHub sign-in failed. Please try again.", {
+        id: toastId,
+      });
+    }
+  };
+
   return (
     <main className="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden bg-base-200 px-4 py-12 sm:px-6">
       {/* Background decoration */}
@@ -160,6 +185,7 @@ const LoginPage = () => {
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
+              onClick={handleGoogleSingIn}
               className="btn btn-outline rounded-xl border-base-300 bg-base-100 text-base-content transition-all duration-200 hover:-translate-y-0.5 hover:border-base-content/20 hover:bg-base-200 active:scale-[0.98]"
             >
               <FaGoogle className="text-lg" />
@@ -168,6 +194,7 @@ const LoginPage = () => {
 
             <button
               type="button"
+              onClick={handleGithubSignIn}
               className="btn btn-outline rounded-xl border-base-300 bg-base-100 text-base-content transition-all duration-200 hover:-translate-y-0.5 hover:border-base-content/20 hover:bg-base-200 active:scale-[0.98]"
             >
               <FaGithub className="text-lg" />
