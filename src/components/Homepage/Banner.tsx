@@ -37,7 +37,7 @@ const Banner = () => {
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
-              href="/events"
+              href="/upcoming-events"
               className="group flex items-center gap-3 rounded-2xl bg-[#FBBF24] py-2 pl-6 pr-2 text-base font-semibold text-[#1F2937] shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FCD34D]"
             >
               আমাদের কার্যক্রম

@@ -84,28 +84,69 @@ const NavbarAuth = ({
         </button>
 
         {/* Dropdown Content */}
+
         <ul
           tabIndex={0}
-          className="menu dropdown-content z-50 mt-3 w-56 rounded-2xl border border-base-300 bg-base-100 p-2 text-base-content shadow-xl"
+          className="menu dropdown-content z-50 mt-3 w-64 gap-1 rounded-2xl border border-base-300 bg-base-100 p-3 text-base-content shadow-2xl shadow-black/10"
         >
+          {/* Dropdown Heading */}
+          <li className="pointer-events-none mb-2 border-b border-base-300 px-3 pb-3">
+            <span className="mt-1 text-sm font-semibold text-base-content">
+              Manage your activities
+            </span>
+          </li>
+
           <li>
-            <Link href="/create-event">
-              <FaCalendarPlus className="text-primary" />
-              Create Event
+            <Link
+              href="/create-event"
+              className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-amber-500/10 hover:text-base-content"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-[#FBBF24] group-hover:text-[#1F2937]">
+                <FaCalendarPlus className="text-lg" />
+              </span>
+              <span className="flex-1">
+                <span className="block font-semibold">Create Event</span>
+                <span className="text-xs text-base-content/50">
+                  Start a new initiative
+                </span>
+              </span>
+              <FaArrowRight className="text-xs text-base-content/30 transition-transform group-hover:translate-x-1" />
             </Link>
           </li>
 
           <li>
-            <Link href="/manage-events">
-              <FaCalendarCheck className="text-primary" />
-              Manage Events
+            <Link
+              href="/manage-events"
+              className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-emerald-500/10 hover:text-base-content"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+                <FaCalendarCheck className="text-lg" />
+              </span>
+              <span className="flex-1">
+                <span className="block font-semibold">Manage Events</span>
+                <span className="text-xs text-base-content/50">
+                  Organize your events
+                </span>
+              </span>
+              <FaArrowRight className="text-xs text-base-content/30 transition-transform group-hover:translate-x-1" />
             </Link>
           </li>
 
           <li>
-            <Link href="/joined-events">
-              <FaUsers className="text-primary" />
-              Joined Events
+            <Link
+              href="/joined-events"
+              className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-sky-500/10 hover:text-base-content"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 transition-colors group-hover:bg-sky-600 group-hover:text-white">
+                <FaUsers className="text-lg" />
+              </span>
+              <span className="flex-1">
+                <span className="block font-semibold">Joined Events</span>
+                <span className="text-xs text-base-content/50">
+                  View your participation
+                </span>
+              </span>
+              <FaArrowRight className="text-xs text-base-content/30 transition-transform group-hover:translate-x-1" />
             </Link>
           </li>
         </ul>

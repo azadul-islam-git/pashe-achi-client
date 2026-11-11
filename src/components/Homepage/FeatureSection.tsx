@@ -14,7 +14,7 @@ const features = [
     title: "কার্যক্রম খুঁজুন",
     description:
       "আপনার এলাকার বিভিন্ন সামাজিক ও মানবিক কার্যক্রম খুঁজে নিন এবং অংশগ্রহণ করুন।",
-    href: "/events",
+    href: "/upcoming-events",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const features = [
     title: "স্বেচ্ছাসেবক হিসেবে যোগ দিন",
     description:
       "আপনার সময় ও দক্ষতা দিয়ে মানুষের পাশে দাঁড়ান এবং ইতিবাচক পরিবর্তনে ভূমিকা রাখুন।",
-    href: "/events",
+    href: "/upcoming-events",
   },
   {
     id: 3,
