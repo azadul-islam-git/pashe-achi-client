@@ -8,27 +8,30 @@ import {
   FaHandsHelping,
   FaHeartbeat,
   FaMapMarkerAlt,
-  FaRegCalendarAlt,
   FaTint,
   FaTree,
   FaUserPlus,
+  FaHeart,
+  FaUsers,
+  FaShieldAlt,
+  FaSyncAlt,
 } from "react-icons/fa";
 
 const steps = [
   {
-    no: "১",
+    no: "০১",
     icon: FaCalendarPlus,
     title: "ইভেন্ট তৈরি করুন",
     text: "আপনার এলাকার প্রয়োজন বুঝে একটি কর্মসূচির পরিকল্পনা করুন। তারিখ, স্থান আর কতজন স্বেচ্ছাসেবক দরকার, তা ঠিক করে দিন।",
   },
   {
-    no: "২",
+    no: "০২",
     icon: FaUserPlus,
     title: "যোগ দিন",
     text: "কাছের কোনো ইভেন্ট পছন্দ হলে এক ক্লিকে অংশ নিন। আপনার যোগদান সংগঠক ও অন্যান্য সদস্যরা সাথে সাথে দেখতে পান।",
   },
   {
-    no: "৩",
+    no: "০৩",
     icon: FaChartLine,
     title: "অগ্রগতি দেখুন",
     text: "কত মানুষ যোগ দিলেন, কাজ কতদূর এগোলো, সবকিছু এক জায়গায় ট্র্যাক করুন এবং শেষে ফলাফল সবার সাথে ভাগ করুন।",
@@ -37,18 +40,22 @@ const steps = [
 
 const values = [
   {
+    icon: FaMapMarkerAlt,
     title: "শুরু হোক নিজের এলাকা থেকে",
     text: "পাড়ার সমস্যা পাড়ার মানুষই সবচেয়ে ভালো বোঝে। তাই আমরা স্থানীয় উদ্যোগকে সবার আগে রাখি।",
   },
   {
+    icon: FaShieldAlt,
     title: "স্বচ্ছতা",
     text: "কে কী করছে, কাজ কতদূর এগোলো, সবাই দেখতে পারেন। লুকানোর মতো কিছু নেই।",
   },
   {
+    icon: FaUsers,
     title: "সবার জন্য খোলা",
     text: "বয়স, পেশা বা পরিচয় নয়, ইচ্ছাটাই আসল। যে কেউ ইভেন্ট তৈরি করতে বা যোগ দিতে পারেন।",
   },
   {
+    icon: FaSyncAlt,
     title: "ধারাবাহিকতা",
     text: "একদিনের উদ্যোগ নয়, আমরা চাই নিয়মিত ভালো কাজের একটি অভ্যাস গড়ে উঠুক।",
   },
@@ -63,140 +70,82 @@ const categories = [
   { name: "স্বাস্থ্য ক্যাম্প", icon: FaHeartbeat },
 ];
 
-const primaryBtn =
-  "group inline-flex items-center gap-3 rounded-full bg-[#FBBF24] py-2 pl-6 pr-2 text-base font-semibold text-[#1F2937] shadow-md shadow-[#FBBF24]/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FCD34D] hover:shadow-lg hover:shadow-[#FBBF24]/40 active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F2937]";
-
 const AboutPage = () => {
   return (
-    <main className="bg-base-100 text-base-content">
-      {/* ───────── Hero ───────── */}
-      <section className="bg-[#1F2937] text-white">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 sm:px-8 md:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+    <main className="overflow-hidden bg-base-100 text-base-content">
+      {/* Our Story */}
+      <section className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-28">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
-            <h1 className="text-4xl font-bold leading-[1.3] sm:text-5xl lg:text-[56px]">
-              একসাথে দাঁড়ালে, বদলে যায় পাড়া-মহল্লা
-            </h1>
+            <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 text-sm font-bold text-emerald-700 dark:text-emerald-400">
+              <FaHeart className="text-[#FBBF24]" />
+              আমাদের পরিচয়
+            </span>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-gray-300">
-              পাশে আছি ফাউন্ডেশন একটি কমিউনিটি প্ল্যাটফর্ম, যেখানে আপনি আপনার
-              এলাকার সমাজসেবামূলক কর্মসূচি তৈরি করতে, তাতে যোগ দিতে এবং তার
-              অগ্রগতি দেখতে পারেন।
+            <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+              আমাদের গল্প
+              <span className="mt-2 block h-1.5 w-16 rounded-full bg-[#FBBF24]" />
+            </h2>
+          </div>
+
+          <div className="space-y-6 text-base leading-9 text-base-content/70 sm:text-lg">
+            <p>
+              অনেক মানুষ সমাজের জন্য কিছু করতে চান। কিন্তু কোথায় যাবেন, কার
+              সাথে কাজ করবেন, কীভাবে শুরু করবেন, এই প্রশ্নেই অনেক ভালো উদ্যোগ
+              থেমে যায়।
+            </p>
+            <p>
+              পাশে আছি তৈরি হয়েছে এই দূরত্ব কমাতে। এখানে যিনি কিছু শুরু করতে
+              চান, তিনি তাঁর সঙ্গী খুঁজে পান। আর যিনি সাহায্য করতে চান, তিনি
+              খুঁজে পান নিজের এলাকার সঠিক কাজটি।
             </p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link href="/upcoming-events" className={primaryBtn}>
-                ইভেন্ট দেখুন
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1F2937] text-[#FBBF24]">
-                  <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </span>
-              </Link>
-
-              <Link
-                href="/"
-                className="rounded-full border border-white/25 px-6 py-3 font-medium text-white transition-colors hover:border-white/60 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FBBF24]"
-              >
-                ইভেন্ট তৈরি করুন
-              </Link>
+            <div className="rounded-2xl border-l-4 border-[#FBBF24] bg-base-200 p-6">
+              <p className="font-bold leading-8 text-base-content">
+                আমাদের লক্ষ্য একটাই: প্রতিটি ভালো উদ্যোগ যেন সঠিক মানুষের কাছে
+                পৌঁছায়।
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Example event card */}
-          <div className="relative mx-auto w-full max-w-md">
-            <div
-              aria-hidden
-              className="absolute -inset-3 z-0 rotate-3 rounded-3xl bg-[#08796F]/40"
-            />
-            <article className="relative rounded-3xl bg-base-100 p-6 text-base-content shadow-2xl shadow-black/30">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2 rounded-full bg-base-200 px-3 py-1 text-sm font-medium text-primary">
-                  <FaTree className="h-3.5 w-3.5" />
-                  বৃক্ষরোপণ
-                </span>
-                <span className="text-xs text-gray-500">উদাহরণ ইভেন্ট</span>
-              </div>
+      {/* How It Works */}
+      <section className="relative overflow-hidden bg-linear-to-br from-[#F0F7F1] to-[#E4F0E8] dark:from-[#101F25] dark:to-[#142D2B]">
+        <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-emerald-400/10 blur-3xl" />
 
-              <h3 className="mt-5 text-2xl font-bold leading-snug">
-                পাড়ার মাঠে শতাধিক গাছ লাগানো
-              </h3>
-
-              <ul className="mt-4 space-y-2.5 text-[15px] text-gray-600">
-                <li className="flex items-center gap-3">
-                  <FaRegCalendarAlt className="text-[#08796F]" />
-                  শুক্রবার, সকাল ৯টা
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaMapMarkerAlt className="text-[#08796F]" />
-                  এলাকার খেলার মাঠ
-                </li>
-              </ul>
-
-              <div className="mt-6">
-                <div className="flex justify-between text-sm">
-                  <span className="font-medium">২৪ জন যোগ দিয়েছেন</span>
-                  <span className="text-gray-500">লক্ষ্য ৪০ জন</span>
-                </div>
-                <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-gray-100">
-                  <div className="h-full w-[60%] rounded-full bg-[#08796F]" />
-                </div>
-              </div>
-
-              <div className="mt-6 rounded-xl bg-[#1F2937] py-3 text-center font-semibold text-white">
-                যোগ দিন
-              </div>
-            </article>
+        <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-28">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full bg-emerald-700/10 px-4 py-2 text-sm font-bold text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-300">
+              <FaChartLine />
+              সহজ ও কার্যকর
+            </span>
+            <h2 className="mt-5 text-3xl font-extrabold sm:text-4xl">
+              কীভাবে কাজ করে
+            </h2>
+            <p className="mt-4 leading-8 text-base-content/65 sm:text-lg">
+              তিনটি সহজ ধাপে আপনি একজন দর্শক থেকে হয়ে উঠতে পারেন পরিবর্তনের
+              অংশ।
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ───────── Story ───────── */}
-      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 md:py-28 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <h2 className="text-3xl font-bold leading-[1.4] sm:text-4xl">
-          আমাদের গল্প
-        </h2>
-
-        <div className="space-y-6 text-lg leading-9 text-base-content/70">
-          <p>
-            অনেক মানুষ সমাজের জন্য কিছু করতে চান। কিন্তু কোথায় যাবেন, কার সাথে
-            কাজ করবেন, কীভাবে শুরু করবেন, এই প্রশ্নেই অনেক ভালো উদ্যোগ থেমে
-            যায়।
-          </p>
-          <p>
-            পাশে আছি তৈরি হয়েছে এই দূরত্ব কমাতে। এখানে যিনি কিছু শুরু করতে চান,
-            তিনি তাঁর সঙ্গী খুঁজে পান। আর যিনি সাহায্য করতে চান, তিনি খুঁজে পান
-            নিজের এলাকার সঠিক কাজটি।
-          </p>
-          <p className="font-semibold text-base-content">
-            আমাদের লক্ষ্য একটাই: প্রতিটি ভালো উদ্যোগ যেন সঠিক মানুষের কাছে
-            পৌঁছায়।
-          </p>
-        </div>
-      </section>
-
-      {/* ───────── How it works ───────── */}
-      <section className="bg-base-200">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
-          <h2 className="max-w-2xl text-3xl font-bold leading-[1.4] sm:text-4xl">
-            কীভাবে কাজ করে
-          </h2>
-          <p className="mt-4 max-w-xl text-lg leading-8 text-base-content/70">
-            তিনটি সহজ ধাপে আপনি একজন দর্শক থেকে হয়ে উঠতে পারেন পরিবর্তনের অংশ।
-          </p>
-
-          <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          <ol className="mt-14 grid gap-6 md:grid-cols-3">
             {steps.map((step) => (
-              <li key={step.no} className="relative">
-                <div className="flex items-center gap-4">
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#08796F] text-white">
-                    <step.icon className="h-6 w-6" />
-                  </span>
-                  <span className="text-5xl font-bold leading-none text-[#FBBF24]">
+              <li
+                key={step.no}
+                className="group rounded-3xl border border-emerald-900/10 bg-white/70 p-7 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-white/10 dark:bg-white/5"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-700 text-white shadow-lg shadow-emerald-700/20 transition-transform group-hover:rotate-6 dark:bg-emerald-600">
+                    <step.icon className="text-2xl" />
+                  </div>
+                  <span className="text-5xl font-black text-emerald-700/10 dark:text-emerald-300/15">
                     {step.no}
                   </span>
                 </div>
-                <Link href={"/"}>
-                  <h3 className="mt-6 text-xl font-bold">{step.title}</h3>
-                </Link>
-                <p className="mt-3 leading-8 text-base-content/70">
+
+                <h3 className="mt-7 text-xl font-bold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-8 text-base-content/65 sm:text-base">
                   {step.text}
                 </p>
               </li>
@@ -205,70 +154,113 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* ───────── Values ───────── */}
-      <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
-        <h2 className="text-3xl font-bold leading-[1.4] sm:text-4xl">
-          যা আমরা বিশ্বাস করি
-        </h2>
+      {/* Our Values */}
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-28">
+        <div className="text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 text-sm font-bold text-emerald-700 dark:text-emerald-400">
+            <FaHeart className="text-[#FBBF24]" />
+            আমাদের ভিত্তি
+          </span>
+          <h2 className="mt-5 text-3xl font-extrabold sm:text-4xl">
+            যা আমরা বিশ্বাস করি
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl leading-8 text-base-content/65">
+            আমাদের প্রতিটি উদ্যোগ পরিচালিত হয় কিছু সহজ কিন্তু গুরুত্বপূর্ণ
+            মূল্যবোধকে সামনে রেখে।
+          </p>
+        </div>
 
-        <dl className="mt-12 grid gap-x-16 md:grid-cols-2">
-          {values.map((v) => (
-            <div
-              key={v.title}
-              className="border-t border-base-300 py-8 first:border-t-0 md:first:border-t md:nth-2:border-t"
+        <div className="mt-14 grid gap-5 sm:grid-cols-2">
+          {values.map((value, index) => (
+            <article
+              key={value.title}
+              className="group rounded-3xl border border-base-300 bg-base-100 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-xl sm:p-8"
             >
-              <dt className="flex items-center gap-3 text-xl font-bold">
-                <span className="h-3 w-3 rounded-full bg-[#FBBF24]" />
-                {v.title}
-              </dt>
-              <dd className="mt-3 pl-6 leading-8 text-base-content/70">
-                {v.text}
-              </dd>
-            </div>
+              <div className="flex items-start gap-5">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/10 text-2xl text-emerald-700 transition-colors group-hover:bg-emerald-700 group-hover:text-white dark:text-emerald-400 dark:group-hover:bg-emerald-500">
+                  <value.icon />
+                </div>
+                <div>
+                  <span className="text-xs font-bold tracking-widest text-emerald-700 dark:text-emerald-400">
+                    VALUE 0{index + 1}
+                  </span>
+                  <h3 className="mt-1 text-xl font-bold">{value.title}</h3>
+                  <p className="mt-3 text-sm leading-8 text-base-content/65 sm:text-base">
+                    {value.text}
+                  </p>
+                </div>
+              </div>
+            </article>
           ))}
-        </dl>
+        </div>
       </section>
 
-      {/* ───────── Categories ───────── */}
-      <section className="bg-[#1F2937] text-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-24">
-          <h2 className="max-w-2xl text-3xl font-bold leading-[1.4] sm:text-4xl">
-            যেসব কাজে আপনি পাশে থাকতে পারেন
+      {/* Activity Categories */}
+      <section className="relative isolate overflow-hidden bg-linear-to-br from-[#102B2A] via-[#123B35] to-[#1F2937] text-white">
+        <div className="pointer-events-none absolute -left-20 -top-20 h-80 w-80 rounded-full bg-emerald-400/15 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-[#FBBF24]/10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-24">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-emerald-200">
+            <FaHandsHelping className="text-[#FBBF24]" />
+            একসাথে ভালো কাজ
+          </span>
+
+          <h2 className="mt-6 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+            যেসব কাজে আপনি
+            <span className="text-emerald-300"> পাশে থাকতে পারেন</span>
           </h2>
 
-          <ul className="mt-10 flex flex-wrap gap-3">
-            {categories.map((c) => (
+          <p className="mt-4 max-w-xl leading-8 text-white/65">
+            আপনার সময়, সামর্থ্য ও ইচ্ছা দিয়ে অংশ নিতে পারেন বিভিন্ন মানবিক ও
+            সমাজসেবামূলক উদ্যোগে।
+          </p>
+
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {categories.map((category) => (
               <li
-                key={c.name}
-                className="flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-base text-gray-100"
+                key={category.name}
+                className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 transition-all duration-200 hover:-translate-y-1 hover:border-emerald-300/40 hover:bg-white/10"
               >
-                <c.icon className="h-4 w-4 text-[#FBBF24]" />
-                {c.name}
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#FBBF24]/15 text-xl text-[#FBBF24]">
+                  <category.icon />
+                </span>
+                <span className="font-semibold text-white">
+                  {category.name}
+                </span>
+                <FaArrowRight className="ml-auto text-sm text-white/35" />
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* ───────── CTA ───────── */}
-      <section className="bg-[#FBBF24]">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-5 py-16 sm:px-8 md:flex-row md:items-center">
-          <div className="max-w-xl">
-            <h2 className="text-3xl font-bold leading-[1.4] text-[#1F2937] sm:text-4xl">
+      {/* Final CTA */}
+      <section className="relative overflow-hidden bg-linear-to-r from-[#FBBF24] via-[#FCD34D] to-[#FBBF24]">
+        <div className="pointer-events-none absolute -right-20 -top-32 h-80 w-80 rounded-full border-40 border-white/15" />
+
+        <div className="relative mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-5 py-16 sm:px-8 md:flex-row md:items-center md:py-20">
+          <div className="max-w-2xl">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#1F2937]/10 px-4 py-2 text-sm font-bold text-[#1F2937]">
+              <FaHeart />
+              আপনিও হতে পারেন পরিবর্তনের অংশ
+            </div>
+
+            <h2 className="text-3xl font-extrabold leading-tight text-[#1F2937] sm:text-4xl">
               আজই আপনার এলাকার একটি কাজে যোগ দিন
             </h2>
-            <p className="mt-3 text-lg leading-8 text-[#1F2937]/80">
-              একাউন্ট খুলতে এক মিনিটও লাগে না।
+            <p className="mt-4 text-base leading-8 text-[#1F2937]/75 sm:text-lg">
+              একসাথে ছোট ছোট উদ্যোগই গড়ে তুলতে পারে সুন্দর একটি সমাজ।
             </p>
           </div>
 
           <Link
-            href="/login"
-            className="group inline-flex shrink-0 items-center gap-3 rounded-full bg-[#1F2937] py-2 pl-7 pr-2 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#111827] hover:shadow-xl active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F2937] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FBBF24]"
+            href="/upcoming-events"
+            className="group inline-flex shrink-0 items-center gap-3 rounded-full bg-[#1F2937] py-2 pl-7 pr-2 font-bold text-white shadow-lg transition-all duration-200 hover:-translate-y-1 hover:bg-[#111827] hover:shadow-xl active:scale-95"
           >
             শুরু করুন
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FBBF24] text-[#1F2937]">
-              <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FBBF24] text-[#1F2937]">
+              <FaArrowRight className="transition-transform group-hover:translate-x-1" />
             </span>
           </Link>
         </div>
