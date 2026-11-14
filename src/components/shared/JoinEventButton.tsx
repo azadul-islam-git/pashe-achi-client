@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { FaUsers } from "react-icons/fa";
@@ -69,6 +69,7 @@ const JoinEventButton = ({ event }: { event: IEvent }) => {
     }
 
     toast.success("সফলভাবে ইভেন্টে যোগ দিয়েছেন!");
+    redirect("/joined-events");
   };
 
   return (

@@ -116,24 +116,6 @@ const NavbarAuth = ({
 
           <li>
             <Link
-              href="/manage-events"
-              className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-emerald-500/10 hover:text-base-content"
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
-                <FaCalendarCheck className="text-lg" />
-              </span>
-              <span className="flex-1">
-                <span className="block font-semibold">Manage Events</span>
-                <span className="text-xs text-base-content/50">
-                  Organize your events
-                </span>
-              </span>
-              <FaArrowRight className="text-xs text-base-content/30 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </li>
-
-          <li>
-            <Link
               href="/joined-events"
               className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-sky-500/10 hover:text-base-content"
             >
@@ -144,6 +126,24 @@ const NavbarAuth = ({
                 <span className="block font-semibold">Joined Events</span>
                 <span className="text-xs text-base-content/50">
                   View your participation
+                </span>
+              </span>
+              <FaArrowRight className="text-xs text-base-content/30 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="/manage-events"
+              className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-emerald-500/10 hover:text-base-content"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+                <FaCalendarCheck className="text-lg" />
+              </span>
+              <span className="flex-1">
+                <span className="block font-semibold">Manage Events</span>
+                <span className="text-xs text-base-content/50">
+                  Organize your events
                 </span>
               </span>
               <FaArrowRight className="text-xs text-base-content/30 transition-transform group-hover:translate-x-1" />
