@@ -9,10 +9,10 @@ import {
   FaCalendarAlt,
   FaCalendarCheck,
   FaMapMarkerAlt,
-  FaEdit,
   FaTrash,
   FaArrowRight,
 } from "react-icons/fa";
+import EditJoinedEvent from "@/components/shared/EditJoinedEvent";
 
 interface IJoinedEvent {
   _id: string;
@@ -181,13 +181,7 @@ const ManageEventsPage = async () => {
 
                   {/* Actions */}
                   <div className="flex shrink-0 gap-3 border-t border-gray-100 pt-4 lg:w-40 lg:flex-col lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0 dark:border-gray-700">
-                    <Link
-                      href={`/manage-events/edit/${joinedEvent._id}`}
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#FBBF24] px-3 py-3 text-sm font-semibold text-[#1F2937] transition hover:bg-[#F5B91A]"
-                    >
-                      <FaEdit />
-                      Edit
-                    </Link>
+                    <EditJoinedEvent joinedEvent={joinedEvent} />
 
                     <button
                       type="button"
