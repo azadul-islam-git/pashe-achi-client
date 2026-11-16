@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { FaUsers } from "react-icons/fa";
@@ -17,7 +17,7 @@ const JoinEventButton = ({ event }: { event: IEvent }) => {
 
     if (!session) {
       toast.error("ইভেন্টে যোগ দিতে প্রথমে লগইন করুন");
-      router.push("/signin");
+      router.push("/login");
       return;
     }
 
@@ -69,7 +69,7 @@ const JoinEventButton = ({ event }: { event: IEvent }) => {
     }
 
     toast.success("সফলভাবে ইভেন্টে যোগ দিয়েছেন!");
-    redirect("/joined-events");
+    router.push("/joined-events");
   };
 
   return (
