@@ -14,6 +14,7 @@ import {
 
 import EditJoinedEvent from "@/components/shared/EditJoinedEvent";
 import DeleteJoinedEvent from "@/components/shared/DeleteJoinedEvent";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 interface IEvent {
   _id: string;
@@ -27,19 +28,25 @@ interface IEvent {
 }
 
 const ManageEventsPage = async () => {
+  const token = await getTokenFromServer();
+
   // Get logged-in user session
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
   if (!session) {
-    redirect("/signin");
+    redirect("/login");
   }
 
   // Fetch events created by the logged-in user
   const response = await fetch(
     `http://localhost:8000/myEvents/${encodeURIComponent(session.user.email)}`,
+
     {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       cache: "no-store",
     },
   );

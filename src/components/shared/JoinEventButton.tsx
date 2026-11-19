@@ -6,6 +6,7 @@ import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { FaUsers } from "react-icons/fa";
 import type { IEvent } from "@/components/shared/EventCard";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const JoinEventButton = ({ event }: { event: IEvent }) => {
   const router = useRouter();
@@ -40,10 +41,13 @@ const JoinEventButton = ({ event }: { event: IEvent }) => {
 
     setIsJoining(true);
 
+    const token = await getTokenFromClient();
+
     const response = await fetch("http://localhost:8000/joinedEvents", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(joinedEvent),
     }).catch(() => null);

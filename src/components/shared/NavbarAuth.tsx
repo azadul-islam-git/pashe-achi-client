@@ -9,6 +9,7 @@ import {
   FaCalendarCheck,
   FaUsers,
   FaSignOutAlt,
+  FaUserCircle,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -94,6 +95,26 @@ const NavbarAuth = ({
             <span className="mt-1 text-sm font-semibold text-base-content">
               Manage your activities
             </span>
+          </li>
+
+          <li>
+            <Link
+              href="/profile"
+              className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-violet-500/10 hover:text-base-content"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/10 text-violet-600 transition-colors group-hover:bg-violet-600 group-hover:text-white">
+                <FaUserCircle className="text-lg" />
+              </span>
+
+              <span className="flex-1">
+                <span className="block font-semibold">My Profile</span>
+                <span className="text-xs text-base-content/50">
+                  View and update your profile
+                </span>
+              </span>
+
+              <FaArrowRight className="text-xs text-base-content/30 transition-transform group-hover:translate-x-1" />
+            </Link>
           </li>
 
           <li>

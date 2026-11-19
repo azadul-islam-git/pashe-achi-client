@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 import { FaTrash, FaTimes, FaExclamationTriangle } from "react-icons/fa";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 interface IEvent {
   _id: string;
@@ -30,16 +31,19 @@ const DeleteJoinedEvent = ({ event }: { event: IEvent }) => {
 
   const handleDelete = async () => {
     if (!session?.user?.email) {
-      toast.error("Please sign in first");
+      toast.error("Please login first");
       return;
     }
 
     setIsDeleting(true);
 
+    const token = await getTokenFromClient();
+
     const response = await fetch(`http://localhost:8000/events/${event._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         email: session.user.email,
@@ -54,7 +58,7 @@ const DeleteJoinedEvent = ({ event }: { event: IEvent }) => {
       return;
     }
 
-    toast.success("Event deleted successfully!");
+    toast.success("ইভেন্টটি সফলভাবে মুছে ফেলা হয়েছে!");
 
     dialogRef.current?.close();
 

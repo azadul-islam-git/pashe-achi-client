@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useSyncExternalStore } from "react";
@@ -43,7 +44,7 @@ const CreateEventPage = () => {
   );
   const today = mounted ? getToday() : undefined;
 
-  const handleCreateEvent = async (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleCreateEvent = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // get from data
@@ -59,12 +60,24 @@ const CreateEventPage = () => {
       return;
     }
 
+    if (
+      !eventData.title.trim() ||
+      !eventData.description.trim() ||
+      !eventData.location.trim()
+    ) {
+      toast.error("সব প্রয়োজনীয় তথ্য সঠিকভাবে পূরণ করুন।");
+      return;
+    }
+
+    const token = getTokenFromClient();
+
     // send data to database
     try {
       const response = await fetch("http://localhost:8000/events", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(eventData),
       });

@@ -10,6 +10,7 @@ import {
   FaMapMarkerAlt,
   FaArrowRight,
 } from "react-icons/fa";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 interface IJoinedEvent {
   _id: string;
@@ -37,13 +38,17 @@ const JoinedEventsPage = async () => {
 
   // Redirect users who are not logged in
   if (!session) {
-    redirect("/signin");
+    redirect("/login");
   }
+  const token = await getTokenFromServer();
 
   // Fetch the logged-in user's joined events
   const response = await fetch(
     `http://localhost:8000/joinedEvents/${encodeURIComponent(session.user.email)}`,
     {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       cache: "no-store",
     },
   );

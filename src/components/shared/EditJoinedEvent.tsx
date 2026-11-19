@@ -13,6 +13,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 interface IEvent {
   _id: string;
@@ -35,7 +36,7 @@ const EditJoinedEvent = ({ event }: { event: IEvent }) => {
     e.preventDefault();
 
     if (!session?.user?.email) {
-      toast.error("Please sign in first");
+      toast.error("Please login first");
       return;
     }
 
@@ -52,12 +53,33 @@ const EditJoinedEvent = ({ event }: { event: IEvent }) => {
       eventDate: formData.get("eventDate") as string,
     };
 
+    if (
+      !updatedEvent.title.trim() ||
+      !updatedEvent.description.trim() ||
+      !updatedEvent.location.trim()
+    ) {
+      toast.error("সব প্রয়োজনীয় তথ্য সঠিকভাবে পূরণ করুন।");
+      return;
+    }
+
+    const today = new Date().toLocaleDateString("en-CA", {
+      timeZone: "Asia/Dhaka",
+    });
+
+    if (updatedEvent.eventDate <= today) {
+      toast.error("Event date must be in the future");
+      return;
+    }
+
     setIsUpdating(true);
+
+    const token = await getTokenFromClient();
 
     const response = await fetch(`http://localhost:8000/events/${event._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(updatedEvent),
     });
@@ -70,7 +92,7 @@ const EditJoinedEvent = ({ event }: { event: IEvent }) => {
       return;
     }
 
-    toast.success("Event updated successfully!");
+    toast.success("ইভেন্টটি সফলভাবে আপডেট করা হয়েছে!");
 
     setIsUpdating(false);
     dialogRef.current?.close();
@@ -213,7 +235,9 @@ const EditJoinedEvent = ({ event }: { event: IEvent }) => {
                 type="date"
                 name="eventDate"
                 defaultValue={event.eventDate}
-                min={new Date().toISOString().split("T")[0]}
+                min={new Date().toLocaleDateString("en-CA", {
+                  timeZone: "Asia/Dhaka",
+                })}
                 className="input h-12 w-full rounded-xl border-gray-200 bg-gray-50 focus:border-emerald-500 focus:outline-none dark:border-gray-700 dark:bg-gray-900/50"
                 required
               />
