@@ -39,6 +39,9 @@ const EventDetailsPage = async ({
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/events/${id}`,
+    {
+      cache: "no-store",
+    },
   );
 
   if (!response.ok) {
@@ -46,6 +49,9 @@ const EventDetailsPage = async ({
   }
 
   const event: IEvent = await response.json();
+  if (!event || !event._id) {
+    notFound();
+  }
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-linear-to-br from-[#F0F7F1] via-[#F9FCF9] to-[#E5F0E9] text-[#1F2937] dark:from-[#0B1720] dark:via-[#111F25] dark:to-[#142D2B] dark:text-gray-100">

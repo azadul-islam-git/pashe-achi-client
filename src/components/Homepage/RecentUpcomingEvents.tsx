@@ -15,6 +15,9 @@ interface IEvent {
 const RecentUpcomingEvents = async () => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/upcomingEvents`,
+    {
+      cache: "no-store",
+    },
   );
 
   if (!response.ok) {

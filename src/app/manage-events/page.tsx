@@ -47,6 +47,7 @@ const ManageEventsPage = async () => {
       headers: {
         authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     },
   );
 
