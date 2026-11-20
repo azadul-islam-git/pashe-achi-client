@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 পাশে আছি (Pashe Achi)
 
-## Getting Started
+### Every Good Deed Begins by Standing Beside Someone.
 
-First, run the development server:
+**পাশে আছি** is a community-driven platform designed to bring people together through social initiatives, volunteering, and meaningful events. It provides a space where people can create events, discover upcoming activities, participate in community efforts, and make a positive impact on society.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 **Live Website:** [Visit পাশে আছি](https://pashe-achi-client.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **🔐 Secure Authentication:** Register and log in using email/password or social authentication.
+- **📅 Create Events:** Authenticated users can create community events by providing event details, descriptions, dates, locations, and images.
+- **🌍 Discover Upcoming Events:** Browse upcoming social activities and community initiatives.
+- **📖 Event Details:** View detailed information about each event, including descriptions, dates, locations, and event categories.
+- **🤝 Join Events:** Users can participate in events that interest them and keep track of their participation.
+- **📋 Joined Events Dashboard:** View all events you have joined in one organized place.
+- **🛠️ Manage Your Events:** Edit or delete events you have created through your personal event management dashboard.
+- **👤 User Profile:** View and update your profile information.
+- **🌓 Dark & Light Mode:** Switch between light and dark themes for a comfortable browsing experience.
+- **📱 Responsive Design:** Fully responsive interface optimized for mobile, tablet, and desktop devices.
+- **🔔 Interactive Notifications:** Get feedback for important actions through toast notifications.
+- **⚡ Dynamic Data:** Event information is stored in MongoDB and fetched dynamically from the backend API.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- React Icons
+- Next Themes
+- React Hot Toast
 
-## Deploy on Vercel
+### Backend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- Better Auth
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Deployment
+
+- Vercel – Frontend
+- Backend Hosting – Express API
+
+---
+
+## 📸 Website Overview
+
+### Homepage
+
+Discover the platform, explore community initiatives, and find upcoming events.
+
+### Upcoming Events
+
+Browse available community activities and explore their details.
+
+### Create Event
+
+Organize new initiatives and invite others to participate.
+
+### Joined Events
+
+Keep track of the activities you have joined.
+
+### Manage Events
+
+Update or delete events that you have created.
+
+---
+
+## 🎯 Project Purpose
+
+The purpose of **পাশে আছি** is to encourage community participation, promote social responsibility, and make it easier for people to connect through meaningful activities.
+
+By bringing event organizers and participants together, the platform aims to make every positive initiative more accessible.
+
+> প্রতিটি ভালো কাজ শুরু হোক একজনের পাশে দাঁড়িয়ে।
+
+---
+
+## 👨‍💻 Developer
+
+Developed with ❤️ to encourage community engagement and positive social impact.
