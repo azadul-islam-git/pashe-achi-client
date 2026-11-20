@@ -33,7 +33,7 @@ const UpcomingEventsPage = async () => {
   let error = false;
 
   try {
-    const response = await fetch("http://localhost:8000/events", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`, {
       method: "GET",
     });
 

@@ -37,9 +37,9 @@ const EventDetailsPage = async ({
 }) => {
   const { id } = await params;
 
-  const response = await fetch(`http://localhost:8000/events/${id}`, {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/events/${id}`,
+  );
 
   if (!response.ok) {
     notFound();

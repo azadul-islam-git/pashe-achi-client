@@ -43,14 +43,17 @@ const JoinEventButton = ({ event }: { event: IEvent }) => {
 
     const token = await getTokenFromClient();
 
-    const response = await fetch("http://localhost:8000/joinedEvents", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/joinedEvents`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(joinedEvent),
       },
-      body: JSON.stringify(joinedEvent),
-    }).catch(() => null);
+    ).catch(() => null);
 
     if (!response) {
       setIsJoining(false);

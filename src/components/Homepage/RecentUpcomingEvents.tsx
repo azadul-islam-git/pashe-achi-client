@@ -13,9 +13,9 @@ interface IEvent {
 }
 
 const RecentUpcomingEvents = async () => {
-  const response = await fetch("http://localhost:8000/upcomingEvents", {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/upcomingEvents`,
+  );
 
   if (!response.ok) {
     throw new Error("Failed to fetch upcoming events");

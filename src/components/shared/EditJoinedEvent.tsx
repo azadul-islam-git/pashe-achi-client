@@ -75,14 +75,17 @@ const EditJoinedEvent = ({ event }: { event: IEvent }) => {
 
     const token = await getTokenFromClient();
 
-    const response = await fetch(`http://localhost:8000/events/${event._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/events/${event._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedEvent),
       },
-      body: JSON.stringify(updatedEvent),
-    });
+    );
 
     const result = await response.json();
 

@@ -44,12 +44,11 @@ const JoinedEventsPage = async () => {
 
   // Fetch the logged-in user's joined events
   const response = await fetch(
-    `http://localhost:8000/joinedEvents/${encodeURIComponent(session.user.email)}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/joinedEvents/${encodeURIComponent(session.user.email)}`,
     {
       headers: {
         authorization: `Bearer ${token}`,
       },
-      cache: "no-store",
     },
   );
 

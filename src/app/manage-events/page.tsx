@@ -41,13 +41,12 @@ const ManageEventsPage = async () => {
 
   // Fetch events created by the logged-in user
   const response = await fetch(
-    `http://localhost:8000/myEvents/${encodeURIComponent(session.user.email)}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/myEvents/${encodeURIComponent(session.user.email)}`,
 
     {
       headers: {
         authorization: `Bearer ${token}`,
       },
-      cache: "no-store",
     },
   );
 

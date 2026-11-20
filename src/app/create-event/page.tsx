@@ -73,14 +73,17 @@ const CreateEventPage = () => {
 
     // send data to database
     try {
-      const response = await fetch("http://localhost:8000/events", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/events`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(eventData),
         },
-        body: JSON.stringify(eventData),
-      });
+      );
 
       const result = await response.json();
 
