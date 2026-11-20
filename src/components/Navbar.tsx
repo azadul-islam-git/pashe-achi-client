@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -20,6 +23,8 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const menuRef = useRef<HTMLDetailsElement>(null);
+
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-base-300 bg-base-100/95 text-base-content shadow-sm backdrop-blur-md transition-colors duration-300">
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-3 sm:px-8">
@@ -48,20 +53,20 @@ const Navbar = () => {
         </Link>
 
         {/* Tablet and Desktop Navigation */}
-        <div className="hidden items-center gap-7 md:flex lg:gap-10">
+        <div className="hidden items-center gap-7 lg:flex xl:gap-10">
           {navLinks.map((link) => (
             <Navlinks key={link.name} {...link} />
           ))}
         </div>
 
         {/* Tablet and Desktop Login Button */}
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
           <NavbarAuth />
         </div>
 
         {/* Mobile Menu */}
-        <details className="group relative md:hidden">
+        <details ref={menuRef} className="group relative lg:hidden">
           <summary
             aria-label="Toggle navigation menu"
             className="flex cursor-pointer list-none items-center justify-center rounded-lg p-2  transition-colors text-base-content hover:bg-base-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FBBF24] group-open:bg-white/10 [&::-webkit-details-marker]:hidden"
@@ -71,17 +76,28 @@ const Navbar = () => {
           </summary>
 
           {/* Mobile Dropdown Menu */}
-          <div className="absolute right-0 top-full z-50 mt-3 w-[min(90vw,320px)] rounded-2xl border border-base-300 bg-base-100 p-3 text-base-content shadow-2xl shadow-black/10">
+          <div
+            onClick={(e) => {
+              if ((e.target as HTMLElement).closest("a")) {
+                menuRef.current?.removeAttribute("open");
+              }
+            }}
+            className="absolute right-0 top-full z-50 mt-3 w-[min(90vw,320px)] rounded-2xl border border-base-300 bg-base-100 p-3 text-base-content shadow-2xl shadow-black/10"
+          >
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Navlinks key={link.name} {...link} variant="mobile" />
               ))}
 
-              <div className="my-2 h-px bg-white/10" />
-              <div className="flex items-center justify-between rounded-xl px-4 py-3">
-                <span className="text-sm font-medium text-base-content">
-                  Theme
-                </span>
+              <div className="my-2 flex items-center justify-between rounded-xl border border-base-300 bg-base-200/50 px-4 py-3">
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold text-base-content">
+                    Appearance
+                  </span>
+                  <span className="text-xs text-base-content/50">
+                    Switch between light and dark mode
+                  </span>
+                </div>
 
                 <ThemeToggle />
               </div>

@@ -69,7 +69,7 @@ const CreateEventPage = () => {
       return;
     }
 
-    const token = getTokenFromClient();
+    const token = await getTokenFromClient();
 
     // send data to database
     try {

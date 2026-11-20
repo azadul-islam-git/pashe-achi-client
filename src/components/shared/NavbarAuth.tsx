@@ -35,6 +35,7 @@ const NavbarAuth = ({
     router.push("/");
     router.refresh();
   };
+
   if (isPending) {
     return <div className="h-11 w-24 animate-pulse rounded-2xl bg-base-300" />;
   }
@@ -43,7 +44,7 @@ const NavbarAuth = ({
     return (
       <Link
         href="/login"
-        className="group flex items-center gap-3 rounded-2xl bg-[#FBBF24] py-2 pl-6 pr-2 text-base font-semibold text-[#1F2937] shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FCD34D]"
+        className="group flex w-fit shrink-0 items-center gap-3 rounded-2xl bg-[#FBBF24] py-2 pl-6 pr-2 text-base font-semibold text-[#1F2937] shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FCD34D]"
       >
         Login
         <span className="flex h-8 w-8 items-center justify-center rounded-2xl bg-neutral text-neutral-content">
@@ -55,6 +56,92 @@ const NavbarAuth = ({
 
   const user = session.user;
 
+  /* ---------------- Mobile / Tablet ---------------- */
+  if (variant === "mobile") {
+    return (
+      <div className="flex flex-col gap-3 border-t border-base-300 pt-3">
+        {/* Profile Row */}
+        <Link
+          href="/profile"
+          className="group flex items-center gap-3 rounded-xl p-2 transition-colors hover:bg-base-200"
+        >
+          <div className="size-10 shrink-0 overflow-hidden rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100">
+            {user.image ? (
+              <Image
+                src={user.image}
+                alt={user.name || "Profile"}
+                width={40}
+                height={40}
+                unoptimized
+                className="size-full object-cover"
+              />
+            ) : (
+              <div className="flex size-full items-center justify-center bg-primary font-bold text-primary-content">
+                {user.name?.charAt(0).toUpperCase() || "U"}
+              </div>
+            )}
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-semibold text-base-content">
+              {user.name || "My Profile"}
+            </p>
+            <p className="truncate text-xs text-base-content/50">
+              View and update your profile
+            </p>
+          </div>
+
+          <FaArrowRight className="text-xs text-base-content/40 transition-transform group-hover:translate-x-1" />
+        </Link>
+
+        {/* Quick Links */}
+        <div className="grid grid-cols-3 gap-2">
+          <Link
+            href="/create-event"
+            className="flex flex-col items-center gap-1.5 rounded-xl border border-base-300 px-2 py-3 text-center transition-colors hover:bg-amber-500/10 active:scale-95"
+          >
+            <span className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600">
+              <FaCalendarPlus />
+            </span>
+            <span className="text-xs font-semibold">Create</span>
+          </Link>
+
+          <Link
+            href="/manage-events"
+            className="flex flex-col items-center gap-1.5 rounded-xl border border-base-300 px-2 py-3 text-center transition-colors hover:bg-emerald-500/10 active:scale-95"
+          >
+            <span className="flex size-9 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+              <FaCalendarCheck />
+            </span>
+            <span className="text-xs font-semibold">Manage</span>
+          </Link>
+
+          <Link
+            href="/joined-events"
+            className="flex flex-col items-center gap-1.5 rounded-xl border border-base-300 px-2 py-3 text-center transition-colors hover:bg-sky-500/10 active:scale-95"
+          >
+            <span className="flex size-9 items-center justify-center rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400">
+              <FaUsers />
+            </span>
+            <span className="text-xs font-semibold">Joined</span>
+          </Link>
+        </div>
+
+        {/* Logout Button */}
+        <button
+          onClick={handleLogout}
+          className="group flex w-fit shrink-0 cursor-pointer items-center gap-3 rounded-xl bg-[#FBBF24] py-1.5 pl-5 pr-1.5 text-sm font-semibold text-[#1F2937] shadow-md transition-all duration-200 hover:bg-[#FCD34D] active:scale-[0.98]"
+        >
+          Logout
+          <span className="flex size-8 items-center justify-center rounded-lg bg-neutral text-neutral-content transition-transform duration-200 group-hover:translate-x-0.5">
+            <FaSignOutAlt className="size-3.5" />
+          </span>
+        </button>
+      </div>
+    );
+  }
+
+  /* ---------------- Desktop ---------------- */
   return (
     <div className="flex items-center gap-3">
       {/* Profile Dropdown */}
@@ -85,12 +172,15 @@ const NavbarAuth = ({
         </button>
 
         {/* Dropdown Content */}
-
         <ul
+          onClick={(e) => {
+            if ((e.target as HTMLElement).closest("a")) {
+              (document.activeElement as HTMLElement | null)?.blur();
+            }
+          }}
           tabIndex={0}
           className="menu dropdown-content z-50 mt-3 w-64 gap-1 rounded-2xl border border-base-300 bg-base-100 p-3 text-base-content shadow-2xl shadow-black/10"
         >
-          {/* Dropdown Heading */}
           <li className="pointer-events-none mb-2 border-b border-base-300 px-3 pb-3">
             <span className="mt-1 text-sm font-semibold text-base-content">
               Manage your activities
@@ -105,14 +195,12 @@ const NavbarAuth = ({
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/10 text-violet-600 transition-colors group-hover:bg-violet-600 group-hover:text-white">
                 <FaUserCircle className="text-lg" />
               </span>
-
               <span className="flex-1">
                 <span className="block font-semibold">My Profile</span>
                 <span className="text-xs text-base-content/50">
                   View and update your profile
                 </span>
               </span>
-
               <FaArrowRight className="text-xs text-base-content/30 transition-transform group-hover:translate-x-1" />
             </Link>
           </li>
@@ -140,7 +228,7 @@ const NavbarAuth = ({
               href="/manage-events"
               className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-emerald-500/10 hover:text-base-content"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white dark:text-emerald-400">
                 <FaCalendarCheck className="text-lg" />
               </span>
               <span className="flex-1">
@@ -158,7 +246,7 @@ const NavbarAuth = ({
               href="/joined-events"
               className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 hover:bg-sky-500/10 hover:text-base-content"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 transition-colors group-hover:bg-sky-600 group-hover:text-white">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600 transition-colors group-hover:bg-sky-600 group-hover:text-white dark:text-sky-400">
                 <FaUsers className="text-lg" />
               </span>
               <span className="flex-1">
@@ -176,9 +264,7 @@ const NavbarAuth = ({
       {/* Logout Button */}
       <button
         onClick={handleLogout}
-        className={`group flex items-center gap-3 rounded-2xl bg-[#FBBF24] py-2 pl-6 pr-2 text-base font-semibold text-[#1F2937] shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FCD34D] cursor-pointer ${
-          variant === "mobile" ? "w-full justify-between" : ""
-        }`}
+        className="group flex cursor-pointer items-center gap-3 rounded-2xl bg-[#FBBF24] py-2 pl-6 pr-2 text-base font-semibold text-[#1F2937] shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FCD34D]"
       >
         Logout
         <span className="flex h-8 w-8 items-center justify-center rounded-2xl bg-neutral text-neutral-content transition-transform duration-200 group-hover:translate-x-0.5">

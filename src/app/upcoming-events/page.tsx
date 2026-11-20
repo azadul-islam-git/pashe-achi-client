@@ -35,7 +35,6 @@ const UpcomingEventsPage = async () => {
   try {
     const response = await fetch("http://localhost:8000/events", {
       method: "GET",
-      cache: "no-store",
     });
 
     if (!response.ok) {
